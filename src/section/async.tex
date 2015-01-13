@@ -1,0 +1,139 @@
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Single-threaded process}
+
+	\begin{block}{}<+->
+		The Node application is executed as a \alert{single-threaded process}.
+	\end{block}
+
+	\begin{block}{Consequences}<+->
+		\begin{itemize}[<+-| highlight@+>]
+			\item The application can only be busy doing one thing at a time.
+			\item Long-running calculations will block other work.
+			\item Blocking system calls will pause the application.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Non-blocking I/O}
+
+	\begin{block}{}<+->
+		\begin{itemize}[<+-| highlight@+>]
+			\item Operations using peripheral hardware (disks, network interfaces, timers, ...) take a relatively long time to complete.
+			\item Non-blocking system calls return immediately, leaving the result of the operation to be fetched with a later system call.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Simplified example}<+->
+		\begin{itemize}[<+->]
+			\item Start reading a block of data from a file descriptor (system data resource) using non-blocking I/O.
+			\item Loop:
+			\begin{itemize}[<+->]
+				\item Check whether read operation is completed.
+				\item If read data available:
+				\begin{itemize}[<+->]
+					\item Do something with the data.
+				\end{itemize}
+				\item If read error:
+				\begin{itemize}[<+->]
+					\item Display error message.
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Non-blocking I/O: Multiple resources}
+
+	\begin{block}{Example: Multiple data resources}<+->
+		\begin{itemize}[<+->]
+			\item Listen for incoming network connections (non-blocking).
+			\item Loop:
+			\begin{itemize}[<+->]
+				\item Check for events.
+				\item If new incoming connection:
+				\begin{itemize}[<+->]
+					\item Start receiving data from incoming connection (non-blocking).
+				\end{itemize}
+				\item If data received from connection:
+				\begin{itemize}[<+->]
+					\item Process data and generate response.
+					\item Start sending response data to connection (non-blocking).
+				\end{itemize}
+				\item If response data is sent:
+				\begin{itemize}[<+->]
+					\item Close the connection.
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Callback functions}<+->
+		\visible<+->{For each combination of \emph{[resource, event--type]} the application registers a \alert{callback function} to be executed when the event occurs.}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Non-blocking I/O: Optimizing performance}
+
+	\begin{block}{Optimizing performance}<+->
+		\begin{itemize}[<+->]
+			\item Continuous checking (a.k.a. polling) by the application would use a lot of system resources.
+			\item Solution: The \emph{select}--family of system calls (blocking).
+			\begin{itemize}[<+->]
+				\item Monitor multiple system resources for events at the same time.
+				\item Return when an event occurs, a timer expires or a signal is received.
+				\item Uses minimal amount of system resources. Application itself is idle.
+			\end{itemize}
+			\item Leverages:
+			\begin{itemize}[<+->]
+				\item Software interrupts
+				\item Hardware interrupts
+				\item Direct Memory Access (D.M.A.)
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Advantages}
+
+	\begin{block}{Advantages}<+->
+		\begin{itemize}[<+->]
+			\item Optimizing system resource usage:
+			\begin{itemize}[<+->]
+				\item Running operations on multiple data resources in parallel instead of sequential.
+				\item Reduces relatively expensive process-switching and thread-switching.
+			\end{itemize}
+			\item No worries about thread-safety.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Asynchronous programming}
+	\framesubtitle{Javascript}
+
+	\begin{block}{}<+->
+		Javascript is perfectly suited for asynchronous programming.
+		\begin{itemize}[<+->]
+			\item Javascript engines have a built--in event--loop.
+			\item First-class functions are used as callbacks.
+			\item Anonymous functions allow for in-line callbacks.
+			\item Automatic binding of a function to its outside context (closure) allows for easy access of program state inside a callback.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+

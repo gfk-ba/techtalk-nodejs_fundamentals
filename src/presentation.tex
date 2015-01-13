@@ -1,0 +1,14 @@
+\documentclass{beamer}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamercolor{itemize item}{fg=gray}
+\setbeamercolor{itemize subitem}{fg=gray}
+\setbeamercolor{itemize subsubitem}{fg=gray}
+\newenvironment{highlightenv}{\color{gray}\setbeamercolor{alerted text}{fg=gray!60!black}\only{\color{black}\setbeamercolor{alerted text}{fg=red}\setbeamercolor{itemize subitem}{fg=blue}\setbeamercolor{itemize subitem}{fg=blue}\setbeamercolor{itemize item}{fg=blue}}}{}
+
+
+\makeatletter
+\def\input@path{{src/}}
+\makeatother
+
+\input{main}

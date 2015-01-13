@@ -1,0 +1,71 @@
+\usepackage{listings}
+\usepackage{color}
+
+\lstdefinelanguage{Erlang}{
+	keywords={},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	basicstyle=\ttfamily\small,
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	morestring=[b]',
+	morestring=[b]"
+}
+
+
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	basicstyle=\ttfamily\tiny,
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	morestring=[b]',
+	morestring=[b]"
+}
+
+
+\lstset{numbers=left, frame=single}
+
+\input{theme}
+
+
+\title{Node.js Fundamentals}
+\author{Dave van Soest}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\frame{\tableofcontents}
+
+\section{Technology}
+\input{section/tech}
+
+\section{Asynchronous programming}
+\input{section/async}
+
+\section{Examples}
+\input{section/example}
+
+\section{API}
+\input{section/api}
+
+\section{Modules}
+\input{section/modules}
+
+\section{Packages}
+\input{section/npm}
+
+\end{document}
+

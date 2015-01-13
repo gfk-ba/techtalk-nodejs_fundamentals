@@ -1,0 +1,11 @@
+{
+    "name": "abc",
+    "version": "1.0.0",
+    "description": "A, B and C",
+    "main": "index.js",
+    "dependencies": {
+        "underscore": "~1.6.0"
+        "xyz": "1.2.3"
+    }
+    ...
+}

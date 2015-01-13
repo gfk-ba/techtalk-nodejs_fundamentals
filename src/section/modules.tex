@@ -1,0 +1,72 @@
+\begin{frame}
+	\frametitle{Modules}
+    \framesubtitle{Using a module}
+
+	\begin{block}{Using a module}<+->
+		\begin{itemize}[<+-| highlight@+>]
+            \item Importing a module: \\* \icode{var xyz = require("xyz");} \\* (short-hand for \texttt{module.require})
+            \begin{itemize}[<+-| highlight@+>]
+                \item Module is searched for in local \texttt{node\_modules} directory and in the system's modules directory.
+            \end{itemize}
+            \item Importing a local module: \\* \icode{var abc = require("./abc");}
+            \begin{itemize}[<+-| highlight@+>]
+                \item Module is searched for in local directory.
+            \end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Modules}
+    \framesubtitle{Module initialization}
+
+	\begin{block}{Example module}<+->
+		\lstinputlisting[language=Javascript]{section/examples/moduleabc.js}
+	\end{block}
+
+	\begin{block}{Module initialization}<+->
+		\begin{itemize}[<+-| highlight@+>]
+            \item A module is initialized upon the first import.
+            \item Each module is only \alert{initialized once} within the program.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Modules}
+    \framesubtitle{Creating a module}
+
+	\begin{block}{Creating a module}<+->
+		\begin{itemize}[<+-| highlight@+>]
+            \item A local module can be ...
+            \begin{itemize}[<+-| highlight@+>]
+                \item a single file \texttt{abc.js} or a directory
+                \item a directory \texttt{abc} with a file called \texttt{index.js} as the module's main entry point
+                \item a directory \texttt{abc} with a package definition file \texttt{package.json}
+                \begin{itemize}[<+-| highlight@+>]
+                    \item This type of module is called a \alert{package}.
+                \end{itemize}
+            \end{itemize}
+            \item A module can import other modules.
+            \item A module exports data and functionality through the \texttt{exports} object (short-hand for \texttt{module.exports})
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Modules}
+    \framesubtitle{Local module usage example}
+
+    \begin{block}{\texttt{./abc.js}}<+->
+		\lstinputlisting[language=Javascript]{section/examples/moduleabc.js}
+	\end{block}
+
+    \begin{block}{\texttt{./app.js}}<+->
+		\lstinputlisting[language=Javascript]{section/examples/importabc.js}
+	\end{block}
+\end{frame}
+
+
